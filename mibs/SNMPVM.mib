@@ -1,0 +1,25 @@
+SNMPVM DEFINITIONS ::= BEGIN
+IMPORTS enterprises FROM RFC1155-SMI;
+cisco OBJECT IDENTIFIER ::= {enterprises 9}
+local OBJECT IDENTIFIER ::= {cisco 2}
+snmpvm OBJECT IDENTIFIER ::= {local 1}
+power OBJECT-TYPE
+    SYNTAX INTEGER { present(1), missing(2) }
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION "AC 220V/50Hz presence"
+    ::= {snmpvm 7}
+voltage OBJECT-TYPE
+    SYNTAX INTEGER
+    UNITS "millivolts"
+    ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION "Battery voltage in millivolts"
+    ::= {snmpvm 8}
+relay OBJECT-TYPE
+    SYNTAX INTEGER { deactivated(0) }
+    ACCESS read-write
+    STATUS mandatory
+    DESCRIPTION "Relay state: negative:Seconds, positive:Threshold"
+    ::= {snmpvm 9}
+END
